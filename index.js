@@ -1,7 +1,10 @@
 require("dotenv").config();
 require("./models/User.model");
+require("./models/Service.model")
+
 const cors = require("cors");
 const userRoutes = require("./Routes/User.routes");
+const serviceRoutes = require("./Routes/Service.routes")
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI + "proyecto-5");
@@ -19,6 +22,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/services", serviceRoutes)
 
 
 app.listen(port, () => {
