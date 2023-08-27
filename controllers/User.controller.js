@@ -94,12 +94,11 @@ const deleteUserById = async (req, res) => {
 const updateUserById = async (req, res) => {
   const { _id } = req.params;
   const { userUpdated } = req.body;
-  const { password } = userUpdated;
-  const hashedPassword = hashPassword(password);
+console.log(userUpdated)
   try {
     const resp = await User.findByIdAndUpdate(
       _id,
-      { ...userUpdated, password: hashedPassword },
+      { ...userUpdated },
       { new: true }
     );
     if (resp) {

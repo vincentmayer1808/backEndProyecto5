@@ -40,6 +40,22 @@ const getServices = async (req, res) => {
     });
   }
 };
+const getService = async (req, res) => {
+const{serviceName}=req.params
+  try {
+    console.log(serviceName)
+    const resp = await Service.findOne({serviceName:serviceName});
+    return res.status(200).json({
+      message: "ok",
+      detail: resp,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal Server Error",
+      detail: err,
+    });
+  }
+};
 
 const deleteService = async (req, res) => {
     const { _id } = req.params;
@@ -93,4 +109,5 @@ module.exports = {
   getServices,
   deleteService,
   updateService,
+  getService
 };
