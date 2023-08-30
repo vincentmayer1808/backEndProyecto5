@@ -1,20 +1,14 @@
 const mongoose = require("mongoose");
 
-const UserScheme = new mongoose.Schema(
+const ContactScheme = new mongoose.Schema(
   {
     username: {
-      type: String,
-      required: true,
-    },
-    password: {
       type: String,
       required: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true,
-      index: true,
       validate: {
         validator: function (v) {
           return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v);
@@ -23,22 +17,18 @@ const UserScheme = new mongoose.Schema(
     },
     phone: {
       type: Number,
+      required: false,
+    },
+    consult:{
+      type: String,
       required: true,
     },
-    paidProduct: {
-      type: Object,
-      required:false,
-    },
-    role:{
-      type: String,
-      required:true,
-    }
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model("User", UserScheme);
+const Contact = mongoose.model("Contact", ContactScheme);
 
-module.exports = {User};
+module.exports = {Contact};

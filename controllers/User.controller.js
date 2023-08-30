@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 const generateToken = require("../helpers/generateToken");
 const hashPassword = require("../helpers/hashPassword");
-
-const User = mongoose.model("User");
+const { User } = require("../models/User.model");
 
 const signUp = async (req, res) => {
-  console.log('signin up')
-  const { username, email, password, phone} = req.body;
+  const { username, email, role, password, phone} = req.body;
   const emailLC = email.toLowerCase();
   const regexP = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   if (!regexP.test(password)) {
@@ -16,13 +14,13 @@ const signUp = async (req, res) => {
     });
   }
   const hashedPassword = hashPassword(password);
-
   try {
     const user = new User({
       username,
       email: emailLC,
       password: hashedPassword,
       phone,
+      role,
     });
     const response = await user.save();
     const token = generateToken(response);
@@ -42,17 +40,16 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const emailLowerCase = email.toLowerCase();
   const passwordHash = hashPassword(password);
-
   try {
     const userValidated = await User.findOne({ email: emailLowerCase });
     if (!userValidated) {
+      console.log('no encontro el usuario')
       return res.status(401).json({
         message: "Usuario no registrado",
       });
     }
     if (userValidated.password === passwordHash) {
       const token = generateToken(userValidated);
-
       return res.status(200).json({
         message: "User logged in successfully",
         userid: userValidated._id,
@@ -94,7 +91,6 @@ const deleteUserById = async (req, res) => {
 const updateUserById = async (req, res) => {
   const { _id } = req.params;
   const { userUpdated } = req.body;
-console.log(userUpdated)
   try {
     const resp = await User.findByIdAndUpdate(
       _id,

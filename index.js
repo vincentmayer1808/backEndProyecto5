@@ -5,6 +5,7 @@ require("./models/Service.model")
 const cors = require("cors");
 const userRoutes = require("./Routes/User.routes");
 const serviceRoutes = require("./Routes/Service.routes")
+const contactRoutes= require("./Routes/Contact.routes")
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI + "proyecto-5");
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 app.use("/services", serviceRoutes)
+app.use("/contact", contactRoutes)
 
 
 app.listen(port, () => {

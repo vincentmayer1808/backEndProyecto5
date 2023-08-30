@@ -34,4 +34,4 @@ const ServiceSchema = new mongoose.Schema({
 })
 const Service = mongoose.model('Service', ServiceSchema)
 
-module.exports=Service
+module.exports={Service}

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const Service = mongoose.model("Service");
-
+const{Service} = require("../models/Service.model")
 const createService = async (req, res) => {
   const { serviceName, categorie, duration, description, price, image, assisting } =
     req.body;
@@ -15,7 +14,7 @@ const createService = async (req, res) => {
         assisting,
     })
     const response= await service.save()
-    return res.status(500).json({
+    return res.status(201).json({
         message:"Service Created",
         response,
     })
