@@ -25,6 +25,7 @@ app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/services", serviceRoutes)
 app.use("/contact", contactRoutes)
+app.use("/payment", paymentRoutes)
 
 
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const{Service} = require("../models/Service.model")
 const createService = async (req, res) => {
-  const { serviceName, categorie, duration, description, price, image, assisting } =
+  const { serviceName, categorie, duration, description, largeDesc, price, image, assisting } =
     req.body;
   try {
     const service = new Service({
@@ -9,6 +9,7 @@ const createService = async (req, res) => {
         categorie,
         duration,
         description,
+        largeDesc,
         price,
         image,
         assisting,

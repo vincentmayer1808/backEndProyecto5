@@ -43,7 +43,6 @@ const login = async (req, res) => {
   try {
     const userValidated = await User.findOne({ email: emailLowerCase });
     if (!userValidated) {
-      console.log('no encontro el usuario')
       return res.status(401).json({
         message: "Usuario no registrado",
       });
