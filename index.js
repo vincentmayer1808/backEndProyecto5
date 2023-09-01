@@ -6,7 +6,7 @@ const cors = require("cors");
 const userRoutes = require("./Routes/User.routes");
 const serviceRoutes = require("./Routes/Service.routes")
 const contactRoutes= require("./Routes/Contact.routes")
-
+const paymentRoutes= require("./Routes/Payment.routes")
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI + "proyecto-5");
 
