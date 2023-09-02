@@ -21,9 +21,9 @@ console.log(item)
     const preference = {
       item,
       back_urls: {
-        success: "http://localhost:5173/success-purchase",
-        pending: "http://localhost:5173/pending-payment",
-        failure: "http://localhost:5173/failure-payment"
+        success: "https://psicologialosrios.netlify.app/success-purchase",
+        pending: "https://psicologialosrios.netlify.app/pending-payment",
+        failure: "https://psicologialosrios.netlify.app/failure-payment"
       },
     };
     console.log(preference)
